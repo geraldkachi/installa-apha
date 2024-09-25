@@ -7,16 +7,19 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      manrope: ["Manrope", "sans-serif"],
+      zilla: ["Zilla Slab", "serif"],
+    },
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        darkgreen: {
-          100: "#002620"
+        primary: {
+          100: "#002620",
+          200: "#005244",
+          300: "#00816B",
         },
-        yellow: {
-          101: "#EFFF3D"
-        }
+        secondary: "#EFFF3D",
+        background: "#f1f7f6",
       },
     },
   },
