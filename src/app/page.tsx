@@ -21,7 +21,7 @@ export default function Home() {
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error?.message}</div>;
   }
   return (
     <div className="w-full">

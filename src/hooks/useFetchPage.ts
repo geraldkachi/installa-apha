@@ -12,7 +12,7 @@ import {
 
 export function useFetchHomePage() {
   const [homepage, setHomepage] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
