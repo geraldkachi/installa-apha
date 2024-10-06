@@ -39,7 +39,7 @@ const Navbar = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  let [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   function openModal() {
     setIsOpen(true);
@@ -51,7 +51,7 @@ const Navbar = () => {
   return (
     <>
       <Modal closeModal={closeModal} isOpen={isOpen} />
-      <nav className="w-full bg-primary-100 md:px-20 px-5 py-[26px] fixed top-0 z-[20]">
+      <nav className="w-full bg-primary-100 md:px-20 px-5 py-[20px] md:py-[unset] fixed top-0 z-[20]">
         <div className="">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
@@ -67,18 +67,11 @@ const Navbar = () => {
                       href={route?.path}
                       className={`${
                         pathname === route.path
-                          ? "text-green-500 whitespace-nowrap"
+                          ? "text-text-white whitespace-nowrap border-b-2 border-white"
                           : "text-white"
-                      } text-base font-normal leading-6 relative`}
+                      } text-base font-normal leading-6 relative py-6`}
                     >
                       {route.title}
-                      <span
-                        className={`${
-                          pathname === route.path
-                            ? "bg-green-500"
-                            : "bg-transparent"
-                        } text-base font-normal leading-6 absolute -bottom-2 left-0 right-0 h-1 w-1 mx-auto rounded-full`}
-                      ></span>
                     </Link>
                   ))}
                 </div>
