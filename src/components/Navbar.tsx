@@ -98,7 +98,7 @@ const Navbar = () => {
               </button>
 
               {isMobileMenuOpen && (
-                <div className="absolute top-24 left-0 px-5 py-5 bg-white w-full">
+                <div className="absolute top-20 left-0 px-5 py-5 bg-white w-full">
                   <div className="space-y-5 flex flex-col">
                     {navigationRoutes.map((route) => (
                       <Link
