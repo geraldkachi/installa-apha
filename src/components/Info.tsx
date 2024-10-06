@@ -136,7 +136,7 @@ const Info = ({ homepage }) => {
                 </button>
               )}
 
-            <button className={`${imgIndex === i && onHover && 'hover:text-[#005244] text-white  hover:!bg-secondary'} md:hidden w-full hover:text-[#005244] text-white text-center mt-6 hover:!bg-secondary bg-primary-200 rounded-full py-4 flex items-center justify-center space-x-2 group-hover:text-white transition-colors duration-300`}>
+            <button className={`${imgIndex === i && onHover && '!text-[#005244]  bg-secondary'} md:hidden w-full hover:text-[#005244] text-white text-center mt-6 hover:!bg-secondary bg-primary-200 rounded-full py-4 flex items-center justify-center space-x-2 group-hover:text-white transition-colors duration-300`}>
                 <span>Get Started</span>
                 <ArrowRight size="20" color={`${imgIndex === i && onHover ? '#005244' :"#FFFFFF"}`} />
               </button>
