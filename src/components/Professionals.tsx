@@ -1,8 +1,19 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/utils";
+import Modal from "./Modal";
 
 const Professionals = ({ homepage }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
   return (
     <section className="bg-primary-100 text-white md:px-20 px-5 md:py-24 py-20">
       <div className="grid md:grid-cols-2 gap-8">
@@ -34,7 +45,7 @@ const Professionals = ({ homepage }) => {
               </div>
             ))}
           </div>
-          <button className="mt-12 bg-secondary text-black px-5 py-3 rounded-full md:w-auto w-full">
+          <button className="mt-12 bg-secondary text-black px-5 py-3 rounded-full md:w-auto w-full"  onClick={openModal}>
             Get Started
           </button>
         </div>
@@ -49,6 +60,7 @@ const Professionals = ({ homepage }) => {
           />
         </div>
       </div>
+      <Modal closeModal={closeModal} isOpen={isOpen} />
     </section>
   );
 };

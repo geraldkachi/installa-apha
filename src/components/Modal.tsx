@@ -27,7 +27,7 @@ const Modal = ({ isOpen, closeModal }) => {
                 <h3 className="md:text-[52px] text-3xl mb-3">
                   Discuss a solar project
                 </h3>
-                <p>
+                <p className="text-lg text-[#21272A] leading-[25.2px] font-normal">
                   Tell us a little about your needs and we will be in touch
                   soonest.
                 </p>

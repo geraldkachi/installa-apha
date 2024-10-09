@@ -1,10 +1,21 @@
-import React from "react";
-import { useFetchProfessionalsPage } from "@/hooks/useFetchPage";
-import Loading from "./Loading";
+"use client";
+import React, { useState } from "react";
+// import { useFetchProfessionalsPage } from "@/hooks/useFetchPage";
+// import Loading from "./Loading";
 import Image from "next/image";
 import { urlFor } from "@/sanity/utils";
+import Modal from "./Modal";
 
 const ProfessionalsHero = ({ professionalsPage }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
   return (
     <section className="gradient md:pt-[200px] md:pb-32 pt-44 pb-20 md:px-20 px-5 text-white">
       <div className="grid md:grid-cols-2 items-center">
@@ -13,7 +24,7 @@ const ProfessionalsHero = ({ professionalsPage }) => {
             {professionalsPage?.hero}
           </h3>
           <p>{professionalsPage?.heroAltText}</p>
-          <button className="mt-6 bg-secondary md:w-auto px-5 py-3 w-full text-black rounded-full">
+          <button onClick={openModal} className="mt-6 bg-secondary md:w-auto px-5 py-3 w-full text-black rounded-full">
             Get Started Now
           </button>
         </div>
@@ -34,6 +45,7 @@ const ProfessionalsHero = ({ professionalsPage }) => {
           />
         </div>
       </div>
+      <Modal closeModal={closeModal} isOpen={isOpen} />
     </section>
   );
 };
