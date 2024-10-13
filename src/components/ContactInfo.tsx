@@ -1,6 +1,6 @@
 import { urlFor } from "@/sanity/utils";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 
 const ContactInfo = ({ contactPage }) => {
   const [formData, setFormData] = useState({
@@ -32,18 +32,36 @@ const ContactInfo = ({ contactPage }) => {
 
     return formErrors;
   };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      return;
     } else {
       setErrors({});
-      console.log("Form Submitted Successfully", formData);
-      // You can now send `formData` to an API endpoint here
     }
+
+    // Construct mailto URL
+    const subject = `${formData.fname} ${formData.lname} (${formData.email}, ${formData.phone})`;
+    const mailtoUrl = `mailto:Hello@instollar.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(formData.message)}`;
+
+    // Redirect to mailto URL
+    window.location.href = mailtoUrl;
+
+    // Reset form after submission
+    setFormData({
+      fname: "",
+      lname: "",
+      email: "",
+      phone: "",
+      message: "",
+      consent: false,
+    });
   };
 
   const handleInputChange = (
@@ -87,6 +105,7 @@ const ContactInfo = ({ contactPage }) => {
           </div>
           <form
             onSubmit={handleSubmit}
+            // onSubmit={handleSubmit}
             className="grid md:grid-cols-2 mt-8 gap-8"
           >
             <div className="flex flex-col space-y-2">
