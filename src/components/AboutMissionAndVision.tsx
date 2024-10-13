@@ -5,12 +5,12 @@ const AboutMissionAndVision = () => {
   return (
     <section className="md:relative md:mt-52">
       <div className="gradient md:h-[300px] h-28 md:block hidden"></div>
-      <div className="gradient w-full">
-        <div className="md:absolute -top-52">
+      <div className="gradient w-full flex flex-col items-center">
+        <div className="md:absolute -top-72 mx-auto max-w-6xl flex items-center justify-center w-full">
           <img
             src="/about.png"
             alt=""
-            className="md:px-10 px-10 md:w-4/5 mx-auto md:block hidden"
+            className="md:px-10 px-10 mx-auto md:block hidden mx-20"
           />
         </div>
         <div className="md:space-y-0 space-y-5 md:flex md:px-20 px-5 text-white md:py-24 py-20">
