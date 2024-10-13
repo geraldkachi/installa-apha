@@ -10,7 +10,7 @@ const CompanyHero = ({ companiesPage }) => {
           and manage your solar installations end-to-end
         </h3>
         <p className="md:text-lg mb-8">{companiesPage?.heroAltText}</p>
-        <button className="bg-secondary text-black px-5 py-3 rounded-full md:text-base text-sm md:w-auto w-full">
+        <button className="bg-secondary text-black hover:bg-primary-100 hover:text-white px-5 py-3 rounded-full md:text-base text-sm md:w-auto w-full">
           Speak With Us
         </button>
       </div>

@@ -22,7 +22,7 @@ const AboutHero = ({ aboutPage }) => {
         </div>
         <div>
           <p className="md:text-lg">{aboutPage?.heroAltText}</p>
-          <button onClick={openModal} className="bg-primary-200 md:w-auto w-full text-white py-3 px-5 mt-6 rounded-full">
+          <button onClick={openModal} className="bg-primary-200 md:w-auto hover:bg-secondary hover:text-black w-full text-white py-3 px-5 mt-6 rounded-full">
             Get Started
           </button>
         </div>

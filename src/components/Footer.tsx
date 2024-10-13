@@ -74,7 +74,7 @@ const Footer = ({ homepage }) => {
               className="w-full bg-white rounded-full p-3 outline-none placeholder:text-sm placeholder:text-black text-black"
               placeholder="Enter Your Email"
             />
-            <button type="submit" className="bg-secondary md:mt-0 mt-2 md:w-auto w-full rounded-full p-3 text-black">
+            <button type="submit" className="bg-secondary md:mt-0 mt-2 md:w-auto w-full rounded-full p-3 text-black hover:text-white hover:bg-primary-200">
               Subscribe
             </button>
           </form>

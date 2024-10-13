@@ -19,7 +19,7 @@ const AboutCTA = ({ aboutPage }) => {
           {aboutPage?.ctaHeader}
         </h3>
         <p className="md:text-lg mb-8">{aboutPage?.ctaAltText}</p>
-        <button onClick={openModal} className="bg-secondary text-black px-5 py-3 rounded-full md:text-base text-sm">
+        <button onClick={openModal} className="bg-secondary text-black hover:bg-primary-100 hover:text-white px-5 py-3 rounded-full md:text-base text-sm">
           Get Started
         </button>
       </div>

@@ -118,7 +118,7 @@ const Navbar = () => {
                   <div className="flex flex-col space-y-5 mt-5">
                     <button
                       onClick={openModal}
-                      className="text-white bg-primary-100 border-primary-200 hover:bg-primary-300 border-2 rounded-full px-5 md:px-10 py-2 md:py-3 hover:text-white transition-all duration-300 ease-in-out w-full text-center"
+                      className="text-white bg-primary-100  border-primary-200 hover:bg-secondary border-2 rounded-full px-5 md:px-10 py-2 md:py-3 hover:text-black transition-all duration-300 ease-in-out w-full text-center"
                     >
                       Get Started
                     </button>

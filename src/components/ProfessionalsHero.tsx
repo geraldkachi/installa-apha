@@ -24,7 +24,7 @@ const ProfessionalsHero = ({ professionalsPage }) => {
             {professionalsPage?.hero}
           </h3>
           <p>{professionalsPage?.heroAltText}</p>
-          <button onClick={openModal} className="mt-6 bg-secondary md:w-auto px-5 py-3 w-full text-black rounded-full">
+          <button onClick={openModal} className="mt-6 bg-secondary md:w-auto px-5 py-3 w-full text-black hover:bg-primary-100 hover:text-white rounded-full">
             Get Started Now
           </button>
         </div>

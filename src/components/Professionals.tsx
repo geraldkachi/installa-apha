@@ -45,7 +45,7 @@ const Professionals = ({ homepage }) => {
               </div>
             ))}
           </div>
-          <button className="mt-12 bg-secondary text-black px-5 py-3 rounded-full md:w-auto w-full"  onClick={openModal}>
+          <button className="mt-12 bg-secondary text-black hover:bg-primary-100 hover:text-white px-5 py-3 rounded-full md:w-auto w-full"  onClick={openModal}>
             Get Started
           </button>
         </div>

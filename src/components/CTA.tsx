@@ -19,7 +19,7 @@ const CTA = ({ homepage }) => {
           {homepage?.ctaHeader}
         </h3>
         <p className="md:text-lg mb-8">{homepage?.ctaAltText}</p>
-        <button className="bg-secondary text-black px-5 py-3 rounded-full md:text-base text-sm"  onClick={openModal}>
+        <button className="bg-secondary text-black hover:bg-primary-100 hover:text-white px-5 py-3 rounded-full md:text-base text-sm"  onClick={openModal}>
           Get Started
         </button>
       </div>

@@ -8,7 +8,7 @@ const ProfessionalsCTA = () => {
         <h3 className="md:max-w-2xl max-w-xs mx-auto md:text-[44px] text-3xl md:leading-snug">
           Ready to join our network of freelance solar professionals?
         </h3>
-        <button className="bg-primary-200 text-white md:px-5 md:w-auto w-full rounded-full py-3 mt-6">
+        <button className="bg-primary-200 text-white hover:bg-secondary hover:text-black md:px-5 md:w-auto w-full rounded-full py-3 mt-6">
           Sign Up Now
         </button>
       </div>

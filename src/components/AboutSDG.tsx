@@ -15,7 +15,7 @@ const AboutSDG = ({ aboutPage }) => {
               At Instollar, we are actively contributing to achieving a
               sustainable future by addressing SDG 7, 8, 9, 11, 13 and 17
             </p>
-            <button className="bg-primary-200 text-white px-5 py-3 rounded-full md:w-auto w-full">
+            <button className="bg-primary-200 text-white px-5 py-3 rounded-full md:w-auto w-full hover:bg-secondary hover:text-black">
               Learn More
             </button>
           </div>
@@ -40,7 +40,7 @@ const AboutSDG = ({ aboutPage }) => {
               At Instollar, we are actively contributing to achieving a
               sustainable future by addressing SDG 7, 8, 9, 11, 13 and 17
             </p>
-            <button className="bg-primary-200 text-white px-5 py-3 rounded-full md:w-auto w-full">
+            <button className="bg-primary-200 text-white hover:bg-secondary hover:text-black px-5 py-3 rounded-full md:w-auto w-full">
               Learn More
             </button>
           </div>

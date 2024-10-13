@@ -206,7 +206,7 @@ const ContactInfo = ({ contactPage }) => {
             <div className="md:col-span-2 text-right">
               <button
                 type="submit"
-                className="bg-primary-200 text-white px-5 py-2 rounded-full md:w-auto w-full"
+                className="bg-primary-200 text-white px-5 py-2 rounded-full md:w-auto w-full hover:bg-[#EFFF3D] hover:text-white"
               >
                 Submit
               </button>
