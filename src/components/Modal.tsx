@@ -1,10 +1,72 @@
 "use client";
+import { FormEvent, useState } from "react";
 import { Dialog, DialogPanel, DialogBackdrop } from "@headlessui/react";
 import { CloseCircle } from "iconsax-react";
 
-import { useRouter } from "next/navigation";
 
 const Modal = ({ isOpen, closeModal }) => {
+
+  const [formData, setFormData] = useState({
+    companyName: "",
+    location: "",
+    representativeName: "",
+    email: "",
+    phone: "",
+    enquiryType: "",
+    companyMessage: "",
+    message: "",
+    typeofPartnership: "",
+    categoryofProject: "",
+    typeofProject: "",
+    partnerMessage: "",
+    // consent: false,
+  });
+
+  const handleChange = (e) => {
+    const { name, value, type, checked }  = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+
+    const {
+      companyName,
+      location,
+      representativeName,
+      email,
+      phone,
+      enquiryType,
+      companyMessage,
+      typeofPartnership,
+      categoryofProject,
+      typeofProject,
+    } = formData;
+
+    const subject = `Enquiry from ${companyName}`;
+    const body = `
+      Company Name: ${companyName}
+      Location: ${location}
+      Representative Name: ${representativeName}
+      Email: ${email}
+      Phone: ${phone}
+      Enquiry Type: ${enquiryType}
+      CompanyMessage: ${companyMessage}
+      Type of Partnership: ${typeofPartnership}
+      Category of Project: ${categoryofProject}
+      Type of Project: ${typeofProject}
+    `;
+
+    const mailtoUrl = `mailto:Hello@instollar.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailtoUrl;
+  };
+
   return (
     <Dialog
       transition
@@ -33,7 +95,7 @@ const Modal = ({ isOpen, closeModal }) => {
                 </p>
               </div>
               <div>
-                <form action="" className="grid md:grid-cols-2 gap-8 mt-10">
+                <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-8 mt-10">
                   <h4 className="md:col-span-2 text-xl font-bold">
                     Company Information
                   </h4>
@@ -45,6 +107,10 @@ const Modal = ({ isOpen, closeModal }) => {
                       type="text"
                       className="form-input"
                       placeholder="Company Name"
+                      name="companyName"
+                      value={formData.companyName}
+                      onChange={handleChange}
+                      required
                     />
                   </div>
                   <div className="flex flex-col space-y-2">
@@ -55,6 +121,10 @@ const Modal = ({ isOpen, closeModal }) => {
                       type="text"
                       className="form-input"
                       placeholder="City, Country"
+                      name="location"
+                      value={formData.location}
+                      onChange={handleChange}
+                      required
                     />
                   </div>
                   <div className="flex flex-col space-y-2">
@@ -65,6 +135,10 @@ const Modal = ({ isOpen, closeModal }) => {
                       type="text"
                       className="form-input"
                       placeholder="John Doe"
+                      name="representativeName"
+                      value={formData.representativeName}
+                      onChange={handleChange}
+                      required
                     />
                   </div>
                   <div className="flex flex-col space-y-2">
@@ -73,8 +147,12 @@ const Modal = ({ isOpen, closeModal }) => {
                     </label>
                     <input
                       type="email"
+                      name="email"
                       className="form-input"
                       placeholder="janedoe@example.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
                     />
                   </div>
                   <div className="flex flex-col space-y-2">
@@ -83,8 +161,12 @@ const Modal = ({ isOpen, closeModal }) => {
                     </label>
                     <input
                       type="text"
+                      name="phone"
                       className="form-input"
                       placeholder="+234 6 00 00 00 00"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      required
                     />
                   </div>
                   <div className="flex flex-col space-y-2">
@@ -92,11 +174,16 @@ const Modal = ({ isOpen, closeModal }) => {
                       Type of enquiry<span className="text-red-600">*</span>
                     </label>
                     <div className="form-input">
-                      <select name="" id="" className="bg-transparent w-full">
-                        <option value="">Select</option>
-                        <option value="">Select</option>
-                        <option value="">Select</option>
-                        <option value="">Select</option>
+                      <select
+                        name="enquiryType"
+                        value={formData.enquiryType}
+                        onChange={handleChange}
+                        className="bg-transparent w-full"
+                        required>
+                        <option value=""></option>
+                        <option value="General Inquiry">General Inquiry</option>
+                        <option value="Project Proposal">Project Proposal</option>
+                        <option value="Partnership">Partnership</option>
                       </select>
                     </div>
                   </div>
@@ -106,11 +193,13 @@ const Modal = ({ isOpen, closeModal }) => {
                       <span className="text-red-600">*</span>
                     </label>
                     <textarea
-                      name="message"
-                      id="message"
+                      name="companyMessage"
+                      value={formData.companyMessage}
+                      onChange={handleChange}
                       rows={5}
                       className="form-input"
                       placeholder="Leave us a message"
+                      required
                     ></textarea>
                   </div>
                   <h4 className="md:col-span-2 text-xl font-bold">
@@ -121,11 +210,15 @@ const Modal = ({ isOpen, closeModal }) => {
                       Category of Project<span className="text-red-600">*</span>
                     </label>
                     <div className="form-input">
-                      <select name="" id="" className="bg-transparent w-full">
-                        <option value="">Select</option>
-                        <option value="">Select</option>
-                        <option value="">Select</option>
-                        <option value="">Select</option>
+                      <select
+                        name="categoryofProject"
+                        value={formData.categoryofProject}
+                        onChange={handleChange}
+                        id="" className="bg-transparent w-full text-black">
+                        <option value=""></option>
+                        <option value="IT projects">IT projects</option>
+                        <option value="Renewable Energy">Renewable Energy</option>
+                        <option value="C&I">Commercial and Industrial (C&I)</option>
                       </select>
                     </div>
                   </div>
@@ -134,11 +227,15 @@ const Modal = ({ isOpen, closeModal }) => {
                       Type of Project<span className="text-red-600">*</span>
                     </label>
                     <div className="form-input">
-                      <select name="" id="" className="bg-transparent w-full">
-                        <option value="">Select</option>
-                        <option value="">Select</option>
-                        <option value="">Select</option>
-                        <option value="">Select</option>
+                      <select
+                        name="typeofProject"
+                        value={formData.typeofProject}
+                        onChange={handleChange}
+                        className="bg-transparent w-full text-black">
+                        <option value=""></option>
+                        <option value="IT projects">IT projects</option>
+                        <option value="Renewable Energy">Renewable Energy</option>
+                        <option value="C&I">Commercial and Industrial (C&I)</option>
                       </select>
                     </div>
                   </div>
@@ -148,8 +245,10 @@ const Modal = ({ isOpen, closeModal }) => {
                       <span className="text-red-600">*</span>
                     </label>
                     <textarea
-                      name="message"
-                      id="message"
+                      value={formData.partnerMessage}
+                      onChange={handleChange}
+                      name="partnerMessage"
+                      // id="message"
                       rows={5}
                       className="form-input"
                       placeholder="Leave us a message"
@@ -163,11 +262,14 @@ const Modal = ({ isOpen, closeModal }) => {
                       Type of Partnership<span className="text-red-600">*</span>
                     </label>
                     <div className="form-input">
-                      <select name="" id="" className="bg-transparent w-full">
-                        <option value="">Select</option>
-                        <option value="">Select</option>
-                        <option value="">Select</option>
-                        <option value="">Select</option>
+                      <select name="typeofPartnership" id="" 
+                      value={formData.typeofPartnership}
+                      onChange={handleChange}
+                      className="bg-transparent w-full">
+                        <option value=""></option>
+                        <option value="GP">General Partnership (GP)</option>
+                        <option value="LP">Limited Partnership (LP)</option>
+                        <option value="LLP">Limited Liability Partnership (LLP)</option>
                       </select>
                     </div>
                   </div>

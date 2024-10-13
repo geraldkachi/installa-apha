@@ -1,9 +1,47 @@
+"use client"
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { urlFor } from "@/sanity/utils";
 
 const Footer = ({ homepage }) => {
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const isValidEmail = (email: string) => {
+    return /\S+@\S+\.\S+/.test(email);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!isValidEmail(email)) {
+      setMessage('Please enter a valid email');
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        body: JSON.stringify({ email }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      const data = await response.json();
+  
+      if (data.success) {
+        setMessage('Thank you for subscribing!');
+      } else {
+        setMessage('There was an issue. Please try again later.');
+      }
+    } catch (error) {
+      console.error('Error subscribing:', error);
+      setMessage('Subscription failed. Please try again.');
+    }
+    // console.log(`Subscribing with email: ${email}`);
+    // setMessage('Thank you for subscribing!');
+  };
+
   return (
     <footer className="bg-primary-100 py-12 text-white md:px-20 px-5">
       <div className="flex md:flex-row flex-col md:justify-between md:py-16">
@@ -12,7 +50,7 @@ const Footer = ({ homepage }) => {
             <Image width={200} height={20} src="svg/logo.svg" alt="logo" />
           </Link>
           <div className="flex items-center space-x-4 mt-3">
-            {homepage?.socialLinks.map((social) => (
+            {homepage?.socialLinks.map((social: any) => (
               <Link href={social.link} key={social._key}>
                 <Image
                   src={urlFor(social.icon).url()}
@@ -27,18 +65,20 @@ const Footer = ({ homepage }) => {
 
         <div className="md:my-0 my-24 md:order-3 order-2">
           <p className="font-zilla text-2xl">Follow Along Our Journey </p>
-          <div className="flex md:flex-row flex-col mt-4 md:space-x-3">
+          <form onSubmit={handleSubmit} className="flex md:flex-row flex-col mt-4 md:space-x-3">
             <input
               type="email"
-              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               id="email"
-              className="w-full bg-white rounded-full p-3 outline-none placeholder:text-sm"
+              className="w-full bg-white rounded-full p-3 outline-none placeholder:text-sm placeholder:text-black text-black"
               placeholder="Enter Your Email"
             />
-            <button className="bg-secondary md:mt-0 mt-2 md:w-auto w-full rounded-full p-3 text-black">
+            <button type="submit" className="bg-secondary md:mt-0 mt-2 md:w-auto w-full rounded-full p-3 text-black">
               Subscribe
             </button>
-          </div>
+          </form>
+            {message && <p>{message}</p>}
         </div>
 
         <div className="flex space-x-5 pb-12 md:order-2 order-3">
