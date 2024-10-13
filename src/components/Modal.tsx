@@ -14,6 +14,7 @@ const Modal = ({ isOpen, closeModal }) => {
     phone: "",
     enquiryType: "",
     companyMessage: "",
+    projectMessage: "",
     message: "",
     typeofPartnership: "",
     categoryofProject: "",
@@ -41,9 +42,11 @@ const Modal = ({ isOpen, closeModal }) => {
       phone,
       enquiryType,
       companyMessage,
+      projectMessage,
       typeofPartnership,
       categoryofProject,
       typeofProject,
+      partnerMessage
     } = formData;
 
     const subject = `Enquiry from ${companyName}`;
@@ -57,7 +60,9 @@ const Modal = ({ isOpen, closeModal }) => {
       CompanyMessage: ${companyMessage}
       Type of Partnership: ${typeofPartnership}
       Category of Project: ${categoryofProject}
+      Project Message: ${projectMessage}
       Type of Project: ${typeofProject}
+      Partner  Message: ${partnerMessage}
     `;
 
     const mailtoUrl = `mailto:Hello@instollar.com?subject=${encodeURIComponent(
@@ -203,7 +208,7 @@ const Modal = ({ isOpen, closeModal }) => {
                     ></textarea>
                   </div>
                   <h4 className="md:col-span-2 text-xl font-bold">
-                    Company Information
+                    Project Information
                   </h4>
                   <div className="flex flex-col space-y-2">
                     <label htmlFor="enquiryType">
@@ -245,9 +250,9 @@ const Modal = ({ isOpen, closeModal }) => {
                       <span className="text-red-600">*</span>
                     </label>
                     <textarea
-                      value={formData.partnerMessage}
+                      value={formData.projectMessage}
                       onChange={handleChange}
-                      name="partnerMessage"
+                      name="projectMessage"
                       // id="message"
                       rows={5}
                       className="form-input"
@@ -279,8 +284,9 @@ const Modal = ({ isOpen, closeModal }) => {
                       <span className="text-red-600">*</span>
                     </label>
                     <textarea
-                      name="message"
-                      id="message"
+                       value={formData.partnerMessage}
+                       onChange={handleChange}
+                       name="partnerMessage"
                       rows={5}
                       className="form-input"
                       placeholder="Leave us a message"
