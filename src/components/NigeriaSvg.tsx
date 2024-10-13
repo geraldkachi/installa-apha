@@ -225,7 +225,7 @@ const NigeriaMap = ({ data }) => {
                     }
                 </Geographies>
             </ComposableMap>
-            {/* <div className="tooltip">{tooltipContent}</div> */}
+            <div className="tooltip hidden">{tooltipContent}</div>
         </>
     );
 };
