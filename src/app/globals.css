@@ -211,3 +211,11 @@ h6 {
   background-color: #005244;
   border-radius: 10px;
 }
+
+.tooltip {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  pointer-events: none;
+}
