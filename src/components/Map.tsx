@@ -56,7 +56,7 @@ const Map = ({ homepage }) => {
             width={1222}
             height={880}
             alt="map"
-          /> */}
+          /> */}   
         </div>
         <div className="md:px-20 px-5 flex items-center justify-center md:hidden">
           <Image
