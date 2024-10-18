@@ -5,7 +5,7 @@ import { urlFor } from "@/sanity/utils";
 const CompanyWhy = ({ companiesPage }) => {
   return (
     <section className="gradient md:px-20 px-5 md:py-24 py-20 text-white">
-      <div className="md:space-y-0 space-y-5 md:flex">
+      <div className="md:space-y-0 space-y-5 md:flex gap-4 md:gap-10">
         <div className="md:w-[30%]">
           <h3 className="md:text-[40px] text-3xl leading-snug">
             Why Instollar is the{" "}

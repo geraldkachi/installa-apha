@@ -13,7 +13,7 @@ const AboutMissionAndVision = () => {
             className="md:px-10 px-10 mx-auto md:block hidden mx-20"
           />
         </div>
-        <div className="md:space-y-0 space-y-5 md:flex gap-4 md:px-20 px-5 text-white md:py-24 py-20">
+        <div className="md:space-y-0 space-y-5 md:flex gap-4 md:gap-10 md:px-20 px-5 text-white md:py-24 py-20">
           <div className="md:w-[30%]">
             <h3 className="md:text-[40px] text-3xl leading-snug">
               Today, solar energy companies spend{" "}
