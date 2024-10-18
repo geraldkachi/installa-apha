@@ -291,7 +291,7 @@ const Modal = ({ isOpen, closeModal }: ModalProps) => {
                     <div className="form-input">
                       <select
                         name="typeofProject"
-                        value={formData.typeofProject}
+                        value={formData.typeofProject}  
                         onChange={handleChange}
                         className="bg-transparent w-full text-black">
                         <option value=""></option>
