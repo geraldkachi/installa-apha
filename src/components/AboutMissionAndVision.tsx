@@ -17,7 +17,7 @@ const AboutMissionAndVision = () => {
           <div className="md:w-[30%]">
             <h3 className="md:text-[40px] text-3xl leading-snug">
               Today, solar energy companies spend{" "}
-              <span className="text-secondary">xx-yy%</span> of their overall
+              <span className="text-secondary">20-30%</span> of their overall
               costs in maintaining an{" "}
               <span className="text-secondary">in-house workforce</span>
             </h3>
