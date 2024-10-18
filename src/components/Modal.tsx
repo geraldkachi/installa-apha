@@ -1,12 +1,34 @@
 "use client";
-import { FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { Dialog, DialogPanel, DialogBackdrop } from "@headlessui/react";
 import { CloseCircle } from "iconsax-react";
 
+// Define form data type
+interface FormData {
+  companyName: string;
+  location: string;
+  representativeName: string;
+  email: string;
+  phone: string;
+  enquiryType: string;
+  companyMessage: string;
+  projectMessage: string;
+  typeofPartnership: string;
+  categoryofProject: string;
+  typeofProject: string;
+  partnerMessage: string;
+  consent: boolean;
+}
 
-const Modal = ({ isOpen, closeModal }) => {
+// Define prop types for the Modal component
+interface ModalProps {
+  isOpen: boolean;
+  closeModal: () => void;
+}
 
-  const [formData, setFormData] = useState({
+const Modal = ({ isOpen, closeModal }: ModalProps) => {
+  const [formError, setFormError] = useState<string>("");
+  const [formData, setFormData] = useState<FormData>({
     companyName: "",
     location: "",
     representativeName: "",
@@ -20,10 +42,10 @@ const Modal = ({ isOpen, closeModal }) => {
     categoryofProject: "",
     typeofProject: "",
     partnerMessage: "",
-    // consent: false,
+    consent: false,
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
@@ -33,6 +55,12 @@ const Modal = ({ isOpen, closeModal }) => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    if (!formData.consent) {
+      setFormError("You must agree to the consent checkbox to proceed.");
+      return;
+    }
+    setFormError("");
 
     const {
       companyName,
@@ -70,6 +98,23 @@ const Modal = ({ isOpen, closeModal }) => {
     )}&body=${encodeURIComponent(body)}`;
 
     window.location.href = mailtoUrl;
+
+    // Clear the form after submission
+    setFormData({
+      companyName: "",
+      location: "",
+      representativeName: "",
+      email: "",
+      phone: "",
+      enquiryType: "",
+      companyMessage: "",
+      projectMessage: "",
+      typeofPartnership: "",
+      categoryofProject: "",
+      typeofProject: "",
+      partnerMessage: "",
+      consent: false,
+    });
   };
 
   return (
@@ -101,6 +146,11 @@ const Modal = ({ isOpen, closeModal }) => {
               </div>
               <div>
                 <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-8 mt-10">
+                   {/* Form Inputs */}
+                   {formError && (
+                    <div className="md:col-span-2 text-red-600">
+                      {formError}
+                    </div>)}
                   <h4 className="md:col-span-2 text-xl font-bold">
                     Company Information
                   </h4>
@@ -191,7 +241,14 @@ const Modal = ({ isOpen, closeModal }) => {
                         <option value="Other">Other</option>
                       </select>
                     </div>
+                  {/* Conditional message for "Other" */}
+                  {formData.enquiryType === "Other" && (
+                      <p className="mt-4 text-green-600">
+                        An Agent will contact you after 2 working hours.
+                      </p>
+                    )}
                   </div>
+
                   <div className="flex flex-col space-y-2 md:col-span-2">
                     <label htmlFor="message">
                       Anything else we should know?
@@ -243,8 +300,13 @@ const Modal = ({ isOpen, closeModal }) => {
                         <option value="Maintenance & After Sale">Maintenance & After Sale</option>
                         <option value="Other">Other</option>
                       </select>
+                    {/* Conditional message for "Other" */}
+                    {formData.typeofProject === "Other" && (
+                        <p className=" text-green-600">An Agent will contact you after 2 working hours.</p>
+                      )}
                     </div>
                   </div>
+
                   <div className="flex flex-col space-y-2 md:col-span-2">
                     <label htmlFor="message">
                       Anything else we should know?
@@ -280,6 +342,13 @@ const Modal = ({ isOpen, closeModal }) => {
                       </select>
                     </div>
                   </div>
+                   {/* Conditional message for "Other" */}
+                    {formData.typeofPartnership === "Other" && (
+                      <p className="mt-4 text-green-600">
+                        An Agent will contact you after 2 working hours.
+                      </p>
+                    )}
+
                   <div className="flex flex-col space-y-2 md:col-span-2">
                     <label htmlFor="message">
                       Anything else we should know?
