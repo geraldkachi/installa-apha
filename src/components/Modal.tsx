@@ -24,7 +24,7 @@ const Modal = ({ isOpen, closeModal }) => {
   });
 
   const handleChange = (e) => {
-    const { name, value, type, checked }  = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
       [name]: type === "checkbox" ? checked : value,
@@ -65,7 +65,7 @@ const Modal = ({ isOpen, closeModal }) => {
       Partner  Message: ${partnerMessage}
     `;
 
-    const mailtoUrl = `mailto:Hello@instollar.com?subject=${encodeURIComponent(
+    const mailtoUrl = `mailto:info@instollar.com?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
 
@@ -186,9 +186,9 @@ const Modal = ({ isOpen, closeModal }) => {
                         className="bg-transparent w-full"
                         required>
                         <option value=""></option>
-                        <option value="General Inquiry">General Inquiry</option>
-                        <option value="Project Proposal">Project Proposal</option>
+                        <option value="Project">Project</option>
                         <option value="Partnership">Partnership</option>
+                        <option value="Other">Other</option>
                       </select>
                     </div>
                   </div>
@@ -221,9 +221,9 @@ const Modal = ({ isOpen, closeModal }) => {
                         onChange={handleChange}
                         id="" className="bg-transparent w-full text-black">
                         <option value=""></option>
-                        <option value="IT projects">IT projects</option>
-                        <option value="Renewable Energy">Renewable Energy</option>
-                        <option value="C&I">Commercial and Industrial (C&I)</option>
+                        <option value="Residential">Residential</option>
+                        <option value="Commercial">Commercial</option>
+                        <option value="Industrial/Mini grid">Industrial/Mini grid</option>
                       </select>
                     </div>
                   </div>
@@ -238,9 +238,10 @@ const Modal = ({ isOpen, closeModal }) => {
                         onChange={handleChange}
                         className="bg-transparent w-full text-black">
                         <option value=""></option>
-                        <option value="IT projects">IT projects</option>
-                        <option value="Renewable Energy">Renewable Energy</option>
-                        <option value="C&I">Commercial and Industrial (C&I)</option>
+                        <option value="Installation">Installation</option>
+                        <option value="Energy Audit/Site Assessment">Energy Audit/Site Assessment</option>
+                        <option value="Maintenance & After Sale">Maintenance & After Sale</option>
+                        <option value="Other">Other</option>
                       </select>
                     </div>
                   </div>
@@ -267,14 +268,15 @@ const Modal = ({ isOpen, closeModal }) => {
                       Type of Partnership<span className="text-red-600">*</span>
                     </label>
                     <div className="form-input">
-                      <select name="typeofPartnership" id="" 
-                      value={formData.typeofPartnership}
-                      onChange={handleChange}
-                      className="bg-transparent w-full">
+                      <select name="typeofPartnership" id=""
+                        value={formData.typeofPartnership}
+                        onChange={handleChange}
+                        className="bg-transparent w-full">
                         <option value=""></option>
-                        <option value="GP">General Partnership (GP)</option>
-                        <option value="LP">Limited Partnership (LP)</option>
-                        <option value="LLP">Limited Liability Partnership (LLP)</option>
+                        <option value="Installation Partnership">Installation Partnership</option>
+                        <option value="Sales Partnership">Sales Partnership</option>
+                        <option value="Energy Audit Partnership">Energy Audit Partnership</option>
+                        <option value="Other">Other</option>
                       </select>
                     </div>
                   </div>
@@ -284,9 +286,9 @@ const Modal = ({ isOpen, closeModal }) => {
                       <span className="text-red-600">*</span>
                     </label>
                     <textarea
-                       value={formData.partnerMessage}
-                       onChange={handleChange}
-                       name="partnerMessage"
+                      value={formData.partnerMessage}
+                      onChange={handleChange}
+                      name="partnerMessage"
                       rows={5}
                       className="form-input"
                       placeholder="Leave us a message"

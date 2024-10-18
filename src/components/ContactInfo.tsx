@@ -46,7 +46,7 @@ const ContactInfo = ({ contactPage }) => {
 
     // Construct mailto URL
     const subject = `${formData.fname} ${formData.lname} (${formData.email}, ${formData.phone})`;
-    const mailtoUrl = `mailto:Hello@instollar.com?subject=${encodeURIComponent(
+    const mailtoUrl = `mailto:info@instollar.com?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(formData.message)}`;
 

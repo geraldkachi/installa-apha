@@ -4,22 +4,29 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { urlFor } from "@/sanity/utils";
 
+
+console.log(process.env.NEXT_PUBLIC_ZEPTO_MAIL_API_KEY, "keyy")
+
 const Footer = ({ homepage }) => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
   const isValidEmail = (email: string) => {
     return /\S+@\S+\.\S+/.test(email);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!isValidEmail(email)) {
       setMessage('Please enter a valid email');
       return;
     }
 
+    setIsLoading(true);
+  
     try {
-      const response = await fetch('/api/subscribe', {
+      const response = await fetch('api/subscribe/', {
         method: 'POST',
         body: JSON.stringify({ email }),
         headers: {
@@ -31,16 +38,18 @@ const Footer = ({ homepage }) => {
   
       if (data.success) {
         setMessage('Thank you for subscribing!');
+        setEmail('');
       } else {
-        setMessage('There was an issue. Please try again later.');
+        setMessage(data.message || 'There was an issue. Please try again later.');
       }
     } catch (error) {
       console.error('Error subscribing:', error);
       setMessage('Subscription failed. Please try again.');
+    }finally {
+      setIsLoading(false); // Stop loading
     }
-    // console.log(`Subscribing with email: ${email}`);
-    // setMessage('Thank you for subscribing!');
   };
+  
 
   return (
     <footer className="bg-primary-100 py-12 text-white md:px-20 px-5">
@@ -75,7 +84,7 @@ const Footer = ({ homepage }) => {
               placeholder="Enter Your Email"
             />
             <button type="submit" className="bg-secondary md:mt-0 mt-2 md:w-auto w-full rounded-full p-3 text-black hover:text-white hover:bg-primary-200">
-              Subscribe
+                {isLoading ? 'Subscribing...' : 'Subscribe'}
             </button>
           </form>
             {message && <p>{message}</p>}
